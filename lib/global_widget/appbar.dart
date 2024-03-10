@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-AppBar DefaultAppBar(BuildContext context) {
+AppBar DefaultAppBar(BuildContext context,
+    {String title = '', List<Widget> actions = const []}) {
   return AppBar(
     leading: GestureDetector(
       onTap: () => Navigator.pop(context),
@@ -11,6 +12,8 @@ AppBar DefaultAppBar(BuildContext context) {
         ],
       ),
     ),
+    title: Text(title),
     leadingWidth: 100,
+    actions: actions,
   );
 }

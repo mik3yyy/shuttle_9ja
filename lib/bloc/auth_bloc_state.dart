@@ -32,3 +32,5 @@ final class Authenticated extends AuthBlocState {
   final String token;
   Authenticated({required this.user, required this.token});
 }
+// final class UploadPhoto extends AuthBlocState {}
+

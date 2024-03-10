@@ -7,6 +7,7 @@ import 'package:shuttle_9ja/global_widget/custom_button.dart';
 import 'package:shuttle_9ja/global_widget/mymessage_handler.dart';
 import 'package:shuttle_9ja/global_widget/textbutton.dart';
 import 'package:shuttle_9ja/global_widget/textfield.dart';
+import 'package:shuttle_9ja/screen/auth_screen/forgot_password/forgot_password.dart';
 import 'package:shuttle_9ja/screen/auth_screen/verify_email/verify_email.dart';
 import 'package:shuttle_9ja/screen/main_screen/main_screen.dart';
 import 'package:shuttle_9ja/settings/validators.dart';
@@ -81,7 +82,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     CustomTextButton(
                       text: "Forgot password?",
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForgotPassword()));
+                      },
                     )
                   ],
                 ),

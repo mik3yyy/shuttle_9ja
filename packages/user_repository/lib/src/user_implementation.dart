@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:user_repository/src/data_provider/user_provider.dart';
@@ -17,12 +18,6 @@ class userRepoImp implements UserRepo {
   // TODO: implement getUser
   User get getUser {
     return User.fill();
-  }
-
-  @override
-  Future<void> updateUser(User user) {
-    // TODO: implement updateUser
-    throw UnimplementedError();
   }
 
   @override
@@ -75,6 +70,75 @@ class userRepoImp implements UserRepo {
     // TODO: implement resendOTP
     try {
       final res = await UserDataProvider.resendOTP(email: email);
+      final data = jsonDecode(res);
+      return data;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> updateUser(
+      Map<String, dynamic> user, String token) async {
+    // TODO: implement updateUser
+    try {
+      final res = await UserDataProvider.updateUser(user: user, token: token);
+      final data = jsonDecode(res);
+      return data;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> changePassword(
+      Map<String, dynamic> Data, String token) async {
+    // TODO: implement changePassword
+    try {
+      final res =
+          await UserDataProvider.changePassword(data: Data, token: token);
+      final data = jsonDecode(res);
+      return data;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> uploadPhoto(File file, String token) async {
+    try {
+      final res = await UserDataProvider.uploadPhoto(file: file, token: token);
+      final data = jsonDecode(res);
+      return data;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> forgotPassword(Map<String, dynamic> Data) async {
+    try {
+      final res = await UserDataProvider.forgotPassword(
+        data: Data,
+      );
+      final data = jsonDecode(res);
+      return data;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> resetPassword(Map<String, dynamic> Data) async {
+    try {
+      final res = await UserDataProvider.resetPassword(
+        data: Data,
+      );
       final data = jsonDecode(res);
       return data;
     } catch (e) {

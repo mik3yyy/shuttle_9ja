@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shuttle_9ja/bloc/auth_bloc_bloc.dart';
 import 'package:shuttle_9ja/observer.dart';
+import 'package:shuttle_9ja/routres.dart';
 import 'package:shuttle_9ja/screen/splash_screen.dart';
+import 'package:shuttle_9ja/services/Hive/user_entity.dart';
 import 'package:shuttle_9ja/settings/theme.dart';
 import 'package:user_repository/user_repository.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserEntityAdapter());
+  await Hive.openBox('userBox');
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = SimpleBlocObserver();
   runApp(MyApp());
 }
@@ -36,7 +46,9 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: lightTheme,
           darkTheme: darkTheme,
-          home: SplashScreen(),
+          routes: routes,
+          initialRoute: SplashScreen.id,
+          // home: SplashScreen(),
         ),
       ),
     );

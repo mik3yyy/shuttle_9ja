@@ -4,7 +4,7 @@ import 'package:shuttle_9ja/settings/constants.dart';
 ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       primary: Constants.primaryColor,
-      // secondary: Constants.white,
+      tertiary: Constants.white,
       secondary: Constants.baseColor,
       seedColor: Colors.white,
     ),

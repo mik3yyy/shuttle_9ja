@@ -27,7 +27,7 @@ class Constants {
   static Color appBarRed = Color(0xFFF15B5F);
   static Color searchCardWhite = Color(0xFFF4F4F4).withOpacity(0.9);
   static Color messageBubbleWhite = Color(0xFFE3E9EC);
-  static Color primaryColor = Color(0xFF08B783);
+  static Color primaryColor = Color(0xFF037743);
   static Color baseColor = Color(0xFFB9E5D1);
 
 // F7A1A3

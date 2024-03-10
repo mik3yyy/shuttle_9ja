@@ -29,6 +29,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
+
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -45,5 +46,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow us to access your camera?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow us to access your Microphone?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+<string>Shuttle 9ja requires access to your photo library to upload profile pictures creating a more personalized account.</string>
+
 </dict>
 </plist>
