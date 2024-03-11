@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shuttle_9ja/bloc/auth_bloc_bloc.dart';
+import 'package:shuttle_9ja/bloc/trip_bloc.dart';
 import 'package:shuttle_9ja/observer.dart';
 import 'package:shuttle_9ja/routres.dart';
 import 'package:shuttle_9ja/screen/splash_screen.dart';
@@ -33,13 +34,18 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<userRepoImp>(create: (context) => userRepoImp()),
+        RepositoryProvider<TripRepoImp>(create: (context) => TripRepoImp()),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) =>
                 AuthBlocBloc(userRepo: context.read<userRepoImp>()),
-          )
+          ),
+          BlocProvider(
+            create: (context) =>
+                TripBloc(tripRepoImp: context.read<TripRepoImp>()),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

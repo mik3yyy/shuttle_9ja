@@ -853,6 +853,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  trips_repository:
+    dependency: "direct dev"
+    description:
+      path: "packages/trips_repository"
+      relative: true
+    source: path
+    version: "0.0.1"
   typed_data:
     dependency: transitive
     description:

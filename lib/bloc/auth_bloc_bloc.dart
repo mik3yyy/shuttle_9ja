@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:shuttle_9ja/global_widget/mymessage_handler.dart';
 import 'package:shuttle_9ja/services/Hive/user_entity.dart';
 import 'package:shuttle_9ja/services/hive_function.dart';
-import 'package:user_repository/src/user_implementation.dart';
+import 'package:user_repository/src/repos/repos.dart';
 import 'package:user_repository/src/models/user.dart';
 
 part 'auth_bloc_event.dart';
@@ -224,6 +224,7 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
 
   _restore(RestoreEvent event, Emitter emit) async {
     try {
+      print(event.token);
       emit(
         Authenticated(
           user: User.fromJson(event.userEntity.toJson()),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shuttle_9ja/screen/main_screen/Home/home_navigation.dart';
 import 'package:shuttle_9ja/screen/main_screen/profile/profile_navigator.dart';
 import 'package:shuttle_9ja/screen/main_screen/profile/profile_screen.dart';
 import 'package:shuttle_9ja/settings/constants.dart';
@@ -45,7 +46,9 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             Offstage(
               offstage: currentIndex != 0,
-              // child: ,
+              child: HomeNavigation(
+                navigatorKey: navigatorKeys[0],
+              ),
             ),
             Offstage(
               offstage: currentIndex != 1,
@@ -58,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (value) {
-            if (currentIndex == value) {
+            if (currentIndex == value && currentIndex != 3) {
               navigatorKeys[currentIndex]
                   .currentState!
                   .popUntil((route) => route.isFirst);

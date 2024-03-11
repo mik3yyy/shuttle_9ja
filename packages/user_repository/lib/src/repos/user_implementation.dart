@@ -5,7 +5,7 @@ import 'dart:math';
 
 import 'package:user_repository/src/data_provider/user_provider.dart';
 import 'package:user_repository/src/models/user.dart';
-import 'package:user_repository/src/user_repo.dart';
+import 'package:user_repository/src/repos/user_repo.dart';
 
 class userRepoImp implements UserRepo {
   @override
