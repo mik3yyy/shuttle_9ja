@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:redacted/redacted.dart';
 import 'package:shuttle_9ja/bloc/auth_bloc_bloc.dart';
 import 'package:shuttle_9ja/bloc/trip_bloc.dart';
+import 'package:shuttle_9ja/global_widget/shimmers.dart';
+import 'package:shuttle_9ja/global_widget/trip_card.dart';
+import 'package:shuttle_9ja/settings/constants.dart';
 
+// import 'package:';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static String id = "/";
@@ -16,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // context.read<TripBloc>().add(GetTrips());
+    context.read<TripBloc>().add(FetchTrips());
   }
 
   @override
@@ -30,17 +35,40 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text(
                 'Hello ${state.user?.firstName ?? ""} ${state.user?.lastName ?? ""}'),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: Column(
-              children: [
-                Text(
-                  "Todays Trips",
-                  style: TextStyle(fontSize: 20),
+          body: BlocConsumer<TripBloc, TripState>(
+            listener: (context, state2) {
+              // TODO: implement listener
+            },
+            builder: (context, state2) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Todays Trips",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Gap(20),
+                    Container(
+                      height: 240,
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => Gap(20),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state2 is Trips ? state2.trips.length : 3,
+                        itemBuilder: (context, index) {
+                          return state2 is Trips
+                              ? TripCard(
+                                  trip: state2.trips[index],
+                                )
+                              : TripShimmer();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                Gap(20),
-              ],
-            ),
+              );
+            },
           ),
         );
       },

@@ -28,4 +28,8 @@ class Bus {
       bookedSeats: json['booked_seats'],
     );
   }
+  @override
+  String toString() {
+    return 'Bus{id: $id, transcoId: $transcoId, model: $model, licenseNumber: $licenseNumber, capacity: $capacity, assignedNumberOfSeats: $assignedNumberOfSeats, bookedSeats: $bookedSeats}';
+  }
 }

@@ -19,4 +19,8 @@ class Transco {
       address: json['address'],
     );
   }
+  @override
+  String toString() {
+    return 'Transco{id: $id, companyName: $companyName, email: $email, address: $address}';
+  }
 }

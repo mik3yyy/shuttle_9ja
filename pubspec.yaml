@@ -53,6 +53,7 @@ dependencies:
   awesome_snackbar_content: ^0.1.1
   dialog_alert: ^0.0.3
   image_picker: ^1.0.7
+  redacted: ^1.0.11
 
 dev_dependencies:
   flutter_test:

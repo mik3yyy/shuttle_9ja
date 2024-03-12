@@ -47,4 +47,8 @@ class Trip {
       endPointCoordinates: List<double>.from(json['end_point']['coordinates']),
     );
   }
+  @override
+  String toString() {
+    return 'Trip{id: $id, transco: $transco, buses: $buses, price: $price, departureTime: $departureTime, arrivalTime: $arrivalTime, tripType: $tripType, createdAt: $createdAt, updatedAt: $updatedAt, startPointCoordinates: $startPointCoordinates, endPointCoordinates: $endPointCoordinates}';
+  }
 }
