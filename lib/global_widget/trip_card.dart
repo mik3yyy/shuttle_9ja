@@ -8,8 +8,9 @@ import 'package:shuttle_9ja/settings/dev_functions.dart';
 import 'package:user_repository/src/models/model.dart';
 
 class TripCard extends StatefulWidget {
-  const TripCard({super.key, required this.trip});
+  const TripCard({super.key, required this.trip, required this.index});
   final Trip trip;
+  final int index;
   @override
   State<TripCard> createState() => _TripCardState();
 }
@@ -33,7 +34,7 @@ class _TripCardState extends State<TripCard> {
                     topRight: Radius.circular(10),
                   ),
                   child: Image.network(
-                    Constants.profile,
+                    widget.trip.buses.first.image,
                     height: 140,
                     width: 180,
                     fit: BoxFit.cover,

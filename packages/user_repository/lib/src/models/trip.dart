@@ -47,6 +47,18 @@ class Trip {
       endPointCoordinates: List<double>.from(json['end_point']['coordinates']),
     );
   }
+  Map<String, dynamic> bookData({required int busIndex, required int seats}) {
+    return {
+      'transco_id': transco.id,
+      'bus_id': buses[busIndex].id,
+      'route_id': id,
+      'has_paid': false,
+      'no_of_seats_booked': 1,
+      'trip_start_date': departureTime.toString(),
+      'trip_return_date': arrivalTime.toString()
+    };
+  }
+
   @override
   String toString() {
     return 'Trip{id: $id, transco: $transco, buses: $buses, price: $price, departureTime: $departureTime, arrivalTime: $arrivalTime, tripType: $tripType, createdAt: $createdAt, updatedAt: $updatedAt, startPointCoordinates: $startPointCoordinates, endPointCoordinates: $endPointCoordinates}';

@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shuttle_9ja/screen/main_screen/Home/home_navigation.dart';
+import 'package:shuttle_9ja/screen/main_screen/Tickets/Tickets_navigation.dart';
 import 'package:shuttle_9ja/screen/main_screen/profile/profile_navigator.dart';
 import 'package:shuttle_9ja/screen/main_screen/profile/profile_screen.dart';
 import 'package:shuttle_9ja/settings/constants.dart';
@@ -55,6 +57,9 @@ class _MainScreenState extends State<MainScreen> {
             ),
             Offstage(
               offstage: currentIndex != 2,
+              child: TicketNavigation(
+                navigatorKey: navigatorKeys[2],
+              ),
             ),
             Offstage(offstage: currentIndex != 3, child: ProfileScreen()),
           ],
@@ -81,12 +86,12 @@ class _MainScreenState extends State<MainScreen> {
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.abc),
-              label: "....",
+              icon: Icon(CupertinoIcons.search),
+              label: "Explore",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.abc),
-              label: "....",
+              icon: Icon(CupertinoIcons.ticket_fill),
+              label: "Tickets",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

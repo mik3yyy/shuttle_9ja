@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shuttle_9ja/bloc/auth_bloc_bloc.dart';
 import 'package:shuttle_9ja/bloc/trip_bloc.dart';
+import 'package:shuttle_9ja/cubit/book_cubit.dart';
 import 'package:shuttle_9ja/observer.dart';
 import 'package:shuttle_9ja/routres.dart';
 import 'package:shuttle_9ja/screen/splash_screen.dart';
@@ -45,6 +46,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 TripBloc(tripRepoImp: context.read<TripRepoImp>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                BookCubit(tripRepoImp: context.read<TripRepoImp>()),
           ),
         ],
         child: MaterialApp(

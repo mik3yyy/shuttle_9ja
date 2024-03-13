@@ -24,11 +24,15 @@ class _SplashScreenState extends State<SplashScreen> {
                   userEntity: HiveFunction.getUser(),
                   token: HiveFunction.getToken()),
             );
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MainScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => MainScreen()),
+            (route) => false);
       } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => OverviewScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => OverviewScreen()),
+            (route) => false);
       }
     });
   }

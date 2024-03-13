@@ -16,4 +16,29 @@ class TripRepoImp extends TripRepo {
       return {'success': false, 'message': 'Check your network'};
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> bookTrip(
+      Map<String, dynamic> data, String token) async {
+    try {
+      final res = await TripsDataProvider.bookTrip(data, token);
+      final response = jsonDecode(res);
+      return response;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> getBookings(String token) async {
+    try {
+      final res = await TripsDataProvider.getBookings(token);
+      final response = jsonDecode(res);
+      return response;
+    } catch (e) {
+      print(e.toString());
+      return {'success': false, 'message': 'Check your network'};
+    }
+  }
 }

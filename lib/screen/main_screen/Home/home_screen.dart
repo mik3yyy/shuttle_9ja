@@ -24,6 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<TripBloc>().add(FetchTrips());
   }
 
+  bool today = true;
+  bool tomorrow = true;
+  bool later = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBlocBloc, AuthBlocState>(
@@ -37,35 +41,138 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: BlocConsumer<TripBloc, TripState>(
             listener: (context, state2) {
-              // TODO: implement listener
+              print('----');
+
+              if (state2 is Trips && state2.todays_trip.isEmpty) {
+                setState(() {
+                  today = false;
+                });
+              } else {
+                setState(() {
+                  today = true;
+                });
+              }
+              print('----');
+
+              if (state2 is Trips && state2.tomorrow_trips.isEmpty) {
+                setState(() {
+                  tomorrow = false;
+                });
+              } else {
+                setState(() {
+                  tomorrow = true;
+                });
+              }
+              if (state2 is Trips && state2.later_trips.isEmpty) {
+                setState(() {
+                  later = false;
+                });
+              } else {
+                setState(() {
+                  later = true;
+                });
+              } // TODO: implement listener
             },
             builder: (context, state2) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Todays Trips",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Gap(20),
-                    Container(
-                      height: 240,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) => Gap(20),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state2 is Trips ? state2.trips.length : 3,
-                        itemBuilder: (context, index) {
-                          return state2 is Trips
-                              ? TripCard(
-                                  trip: state2.trips[index],
-                                )
-                              : TripShimmer();
-                        },
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // if(state2 is Au )
+                      if (today)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Todays Trips",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Gap(10),
+                            Container(
+                              height: 240,
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) => Gap(20),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: state2 is Trips
+                                    ? state2.todays_trip.length
+                                    : 3,
+                                itemBuilder: (context, index) {
+                                  return state2 is Trips
+                                      ? TripCard(
+                                          trip: state2.todays_trip[index],
+                                          index: index,
+                                        )
+                                      : TripShimmer();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (tomorrow)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Gap(10),
+                            Text(
+                              "Tomorrow Trips",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Gap(10),
+                            Container(
+                              height: 240,
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) => Gap(20),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: state2 is Trips
+                                    ? state2.tomorrow_trips.length
+                                    : 3,
+                                itemBuilder: (context, index) {
+                                  return state2 is Trips
+                                      ? TripCard(
+                                          trip: state2.tomorrow_trips[index],
+                                          index: index,
+                                        )
+                                      : TripShimmer();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      Gap(10),
+                      if (!today && !tomorrow) ...[
+                        Text(
+                          "Trips",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ] else ...[
+                        Text(
+                          "Later Trips",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+
+                      Gap(10),
+                      Container(
+                        height: 240,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => Gap(20),
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              state2 is Trips ? state2.later_trips.length : 3,
+                          itemBuilder: (context, index) {
+                            return state2 is Trips
+                                ? TripCard(
+                                    trip: state2.later_trips[index],
+                                    index: index,
+                                  )
+                                : TripShimmer();
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
